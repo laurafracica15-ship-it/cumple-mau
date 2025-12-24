@@ -1,0 +1,370 @@
+
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Cumpleaños ❤️</title>
+  <style>
+    :root{
+      --bg: linear-gradient(120deg,#ffefba,#ffc3a0);
+      --card:#ffffffcc;
+      --accent:#ff6f61;
+      --maxw:1000px;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; padding:24px; background: radial-gradient(circle at 50% 120%, #0b1b2b 0%, #858ea8 80%) fixed; display:flex; justify-content:center;}
+    .container{width:100%; max-width:var(--maxw); background:transparent}
+    header{display:flex; align-items:center; gap:16px; margin-bottom:18px}
+    header h1{margin:0; font-size:2rem}
+    .card{background:var(--card); border-radius:14px; padding:18px; box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+
+    .hero{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center}
+    .hero .message{padding:12px}
+    .controls{display:flex; gap:8px; align-items:center}
+    .btn{padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:600}
+    .btn-accent{background:var(--accent); color:white}
+
+    .gallery{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; margin-top:12px}
+    .gallery img{width:100%; height:120px; object-fit:cover; border-radius:8px}
+
+    .video-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px}
+    video{width:100%; border-radius:10px; background:#000}
+
+    .text-section{margin-top:12px}
+
+    footer{margin-top:14px; font-size:0.9rem; color:#3335}
+
+    /* modal preview */
+    .preview-modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.6)}
+    .preview-modal .inner{width:90%; max-width:800px}
+
+    /* Simulated fullscreen fallback (no requestFullscreen required) */
+    .simulated-fullscreen{position:fixed !important; inset:0 !important; width:100% !important; height:100% !important; margin:0 !important; padding:20px !important; z-index:99999 !important; overflow:auto !important; background:var(--bg) !important}
+
+    @media (max-width:700px){
+  body{padding:12px}
+  header{flex-direction:column; align-items:flex-start}
+  header h1{font-size:1.5rem}
+  .controls{width:100%; justify-content:space-between}
+  .btn{flex:1; padding:12px; font-size:0.95rem}
+  .hero{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .gallery img{height:110px}
+  .video-grid{grid-template-columns:1fr}
+  iframe{height:200px}
+}
+
+/* Carrusel optimizado para móvil */
+.carousel{
+  overflow:hidden;
+  position:relative;
+}
+
+.carousel-track{
+  display:flex;
+  gap:12px;
+  animation: autoScroll 18s linear infinite;
+}
+
+.carousel-track img{
+  flex:0 0 70%;
+  max-width:70%;
+  border-radius:10px;
+}
+
+@keyframes autoScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* Pausa automática al tocar o pasar el mouse */
+.carousel:active .carousel-track,
+.carousel:hover .carousel-track{
+  animation-play-state:paused;
+}
+
+/* Swipe móvil */
+.carousel{
+  touch-action:pan-x;
+}
+
+.carousel-track{display:flex; gap:10px}
+.carousel-track img{flex:0 0 70%; max-width:70%}
+
+/* Evitar hover en móvil */
+@media (hover: none){
+  .carousel:hover .carousel-track{animation-play-state:running}
+}
+      .video-grid{grid-template-columns:1fr}
+    
+  
+/* Aurora Boreal Background */
+body {
+    background: radial-gradient(circle at 50% 120%, #0b1b2b 0%, #020611 80%) fixed;
+    background-size: cover;
+    animation: aurora 12s ease-in-out infinite;
+}
+@keyframes aurora {
+    0% { background: radial-gradient(circle at 50% 120%, #0b1b2b 0%, #020611 80%); }
+    25% { background: radial-gradient(circle at 40% 130%, #1a395c 0%, #020611 80%); }
+    50% { background: radial-gradient(circle at 60% 110%, #224f7a 0%, #020611 80%); }
+    75% { background: radial-gradient(circle at 55% 140%, #183a63 0%, #020611 80%); }
+    100% { background: radial-gradient(circle at 50% 120%, #0b1b2b 0%, #020611 80%); }
+}
+</style>
+</head>
+<body>
+  <div class="container" id="appContainer">
+    <header>
+      <h1>🎉 Feliz cumpleaños, amor</h1>
+      <div class="controls">
+        <button class="btn btn-accent" id="playToggle">▶️ Reproducir música</button>
+        <button class="btn" id="fullscreenBtn">🔍 Ver en pantalla</button>
+      </div>
+    </header>
+
+    
+
+    <section class="card" style="margin-top:12px">
+      <h3>Recuerdos al lado de mi adulto responsable</h3>
+      <div class="carousel">
+  <div class="carousel-track" id="gallery">
+    <img src="20250209_164816.jpg" alt="Foto 1" />
+    <img src="IMG-20240719-WA0001.jpg" alt="Foto 2" />
+    <img src="IMG-20250101-WA0007.jpg" alt="Foto 3" />
+    <img src="IMG-20250209-WA0050.jpg" alt="Foto 4"/>
+    <img src="IMG-20250209-WA0071.jpg" alt="Foto 5"/>
+    <img src="IMG-20250209-WA0078.jpg" alt="Foto 6"/>
+    <img src="IMG-20250209-WA0079.jpg" alt="Foto 7"/>
+    <img src="IMG-20250209-WA0080.jpg" alt="Foto 8"/>
+    <img src="IMG_20240927_061756.jpg" alt="Foto 9">
+  </div>
+  <section class="section">
+  <h2>Un Mensaje Para Ti</h2>
+  <p>
+    Mauu, quiero decirte que estoy muy orgullosa de ti...
+  </p>
+  <p>
+    Te agradezco el permitirme estar en tu vida…
+  </p>
+</section>
+
+<section class="section">
+  
+
+  <video controls>
+    <source src="VID-20250429-WA0009.mp4" type="video/mp4" />
+  </video>
+
+  <video controls>
+    <source src="Video de WhatsApp 2025-12-15 a las 11.10.29_0950a5d1.mp4" type="video/mp4"/>
+  </video>
+
+  <video controls>
+    <source src="Video de WhatsApp 2025-12-15 a las 11.10.16_64bc26f0.mp4" type="video/mp4"/>
+  </video>
+
+</div>
+
+      
+
+      <div class="text-section">
+        <h3>Mis letras siempre seran para ti</h3>
+        <p id="mensaje">Mauu, quiero decirte que estoy muy orgullosa de ti, de todo lo que haz logrado en cada momento de tu vida, mereces demasiadas cosas, ya que eres capaz de lograr lo que sea. <p>Te agradezco el permitirme estar en tu vida, el dejarme verte crecer; me hace ilusion que ya cumplas 18, aunque cierta nostalgia de ver que ya no me vas a necesitar como adulta responsabel, ya vas a poder jugar los jueguitos de feria sin necesitarme.
+Hace un tiempo no se mucho de ti, y ninguno de esos dias he dejado de amarte o de esperar que sea un buen día para ti.
+Es increible como hcae 16 años no sabía de ti, no estaba en tus cumpleaños, en tus navidades, ni era la primera persona a la que le deseabas feliz año, pero desde el año pasado todo eso cambio, te conocí, y senti por primera vez muchas cosas que jamas habia sentido, conocí lo que es querer compartir tu vida con alguien más, y le agradesco tanto a la vida de que tu seas ese alguien más.
+Me encantaría poder estar contigo en cada cumpleaños, verte crecer año tras año, hasta que seamos viejitos y arrugaditos.<p></p>
+
+Te quiero agradecer por todo, por estar conmigo en todos momentos en los que nisiquiera yo podia estar conmigo, te agradezco por eseñarme a amar y lo que es ser amada, por dejarme ver y cuidar a tu niño interior, jamas me he arrepentido y estoy segura que nunca me arrepentire de lo que pasamos juntos, de las noches de risa, de las lagrimas que pasamos y de cada beso dado en el que simplemente habia amor.<p></p>
+
+Te amo mi caballito de mar, de aqui a los 2999088889 pasos de tu casa a la tienda de la esquina a pasitos de Dominic<p></p>
+
+Atentamente;<p>Tu medusa y tu monja, Laura Fracica.</p>
+ 
+Posdata;<p> Siempre sera el amor de mi vida, por y para siempre</p>
+
+Si capitan estamos listos...
+
+
+</p>
+      </div>
+    </section>
+
+<a href="Y si hacemos un último intento[1].docx" download class="btn btn-accent">
+  💌 Abrir mi carta para ti
+</a>
+
+   
+  </div>
+
+  <!-- modal para previsualizar imagen/video -->
+  <div class="preview-modal" id="previewModal"><div class="inner card" id="previewInner"></div></div>
+
+  <!-- audio (fondo) -->
+  <audio id="bgAudio" loop>
+    <source src="assets/audio/background.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <script>
+    // Elementos
+    const audio = document.getElementById('bgAudio');
+    const playToggle = document.getElementById('playToggle');
+
+let audioStarted = false;
+
+function startAudioOnce(){
+  if(!audioStarted){
+    audio.play().then(()=>{
+      audioStarted = true;
+      playToggle.textContent='⏸️ Pausar música';
+    }).catch(()=>{});
+  }
+}
+
+// Primer toque en cualquier parte activa la música
+['click','touchstart'].forEach(evt=>{
+  document.addEventListener(evt, startAudioOnce, { once:true });
+});
+    const appContainer = document.getElementById('appContainer');
+
+    // Estado
+    let simulatedFullscreen = false; // fallback state when requestFullscreen is blocked
+
+    // Audio play/pause (user gesture required to start audio with sound in many browsers)
+    playToggle.addEventListener('click', async ()=>{
+      if(audio.paused){
+        try{ await audio.play(); playToggle.textContent='⏸️ Pausar música'; }
+        catch(e){
+          console.warn('No se pudo reproducir el audio automáticamente:', e);
+          alert('El navegador bloqueó la reproducción automática. Presiona el botón otra vez o interactúa con la página para permitir audio.');
+        }
+      } else { audio.pause(); playToggle.textContent='▶️ Reproducir música'; }
+    });
+
+    // Fullscreen handling with robust fallback
+    fullscreenBtn.addEventListener('click', async (event)=>{
+      // Try native fullscreen first - must be called from a user gesture (this click)
+      try{
+        if(document.fullscreenElement){
+          // If already native fullscreen, exit
+          await document.exitFullscreen();
+          fullscreenBtn.textContent = '🔍 Ver en pantalla';
+          return;
+        }
+
+        // Request fullscreen on the app container for better UX
+        if(appContainer.requestFullscreen){
+          await appContainer.requestFullscreen();
+          fullscreenBtn.textContent = '❌ Salir pantalla';
+          return;
+        } else if(document.documentElement.requestFullscreen){
+          await document.documentElement.requestFullscreen();
+          fullscreenBtn.textContent = '❌ Salir pantalla';
+          return;
+        }
+      } catch(err){
+        // If the browser disallows fullscreen due to permissions policy or other reason,
+        // fall back to a simulated fullscreen mode that simply stretches the container.
+        console.warn('Fullscreen nativo falló, usando fallback simulado:', err);
+        toggleSimulatedFullscreen();
+        return;
+      }
+    });
+
+    // Listen to native fullscreenchange to update button label accordingly
+    document.addEventListener('fullscreenchange', ()=>{
+      if(document.fullscreenElement){
+        fullscreenBtn.textContent = '❌ Salir pantalla';
+      } else {
+        // If we exit native fullscreen and previously we used simulated mode, keep it separate
+        if(simulatedFullscreen){
+          // nothing to change here; simulated mode manages its own label
+        } else {
+          fullscreenBtn.textContent = '🔍 Ver en pantalla';
+        }
+      }
+    });
+
+    function toggleSimulatedFullscreen(){
+      simulatedFullscreen = !simulatedFullscreen;
+      if(simulatedFullscreen){
+        appContainer.classList.add('simulated-fullscreen');
+        fullscreenBtn.textContent = '❌ Salir pantalla';
+      } else {
+        appContainer.classList.remove('simulated-fullscreen');
+        fullscreenBtn.textContent = '🔍 Ver en pantalla';
+      }
+    }
+
+    // Allow Escape key to exit simulated fullscreen
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && simulatedFullscreen){
+        toggleSimulatedFullscreen();
+      }
+    });
+
+    // Manejo de subida de imágenes/videos locales (no sube a internet; solo preview local)
+    const gallery = document.getElementById('gallery');
+    const imageInput = document.getElementById('imageInput');
+    const videoInput = document.getElementById('videoInput');
+    const videosDiv = document.getElementById('videos');
+    const previewModal = document.getElementById('previewModal');
+    const previewInner = document.getElementById('previewInner');
+
+    imageInput.addEventListener('change', e=>{
+      const files = Array.from(e.target.files);
+      files.forEach(file=>{
+        const url = URL.createObjectURL(file);
+        const img = document.createElement('img');
+        img.src = url; img.alt = file.name;
+        img.addEventListener('click', ()=> openPreview(`<img src='${url}' style='width:100%; border-radius:10px'/>`));
+        gallery.prepend(img);
+      });
+    });
+
+    videoInput.addEventListener('change', e=>{
+      const files = Array.from(e.target.files);
+      files.forEach(file=>{
+        const url = URL.createObjectURL(file);
+        const vid = document.createElement('video');
+        vid.src = url; vid.controls = true; vid.style.borderRadius='10px'; vid.style.maxHeight='220px';
+        vid.addEventListener('click', ()=> openPreview(`<video src='${url}' controls style='width:100%'></video>`));
+        videosDiv.prepend(vid);
+      });
+    });
+
+    function openPreview(html){ previewInner.innerHTML = html; previewModal.style.display='flex'; }
+    previewModal.addEventListener('click', (e)=>{ if(e.target===previewModal) { previewModal.style.display='none'; previewInner.innerHTML=''; }});
+
+    // Drag & drop básico (arrastrar imágenes o videos a la ventana del navegador)
+    ;(function enableDragDrop(){
+      const dropRegion = document.body;
+      dropRegion.addEventListener('dragover', e=>{ e.preventDefault(); dropRegion.style.opacity=0.95; });
+      dropRegion.addEventListener('dragleave', e=>{ dropRegion.style.opacity=1; });
+      dropRegion.addEventListener('drop', e=>{
+        e.preventDefault(); dropRegion.style.opacity=1;
+        const items = Array.from(e.dataTransfer.files || []);
+        items.forEach(file=>{
+          const type = file.type;
+          const url = URL.createObjectURL(file);
+          if(type.startsWith('image/')){
+            const img = document.createElement('img'); img.src=url; img.alt=file.name; img.addEventListener('click', ()=> openPreview(`<img src='${url}' style='width:100%'>`)); gallery.prepend(img);
+          } else if(type.startsWith('video/')){
+            const vid = document.createElement('video'); vid.src=url; vid.controls=true; videosDiv.prepend(vid);
+          }
+        });
+      });
+    })();
+
+    // Atajo para editar mensaje especial con prompt
+    document.getElementById('mensaje').addEventListener('click', ()=>{
+      const nuevo = prompt('Escribe tu mensaje especial:', document.getElementById('mensaje').textContent);
+      if(nuevo!==null) document.getElementById('mensaje').textContent = nuevo;
+    });
+  </script>
+</body>
+</html>
